@@ -1,4 +1,4 @@
-# Combatproof Mixins 1.5
+# Combatproof Mixins 1.5.1
 
 ### New in 1.5.1 :
 - Added `@mixin border-radiuses` ;
@@ -7,11 +7,11 @@
 - Removed `@mixin border-top-radius` ;
 - Removed `@mixin border-right-radius` ;
 - Removed `@mixin border-bottom-radius` ;
-- Removed `@mixin border-left-radius`.
+- Removed `@mixin border-left-radius` (replaced by `@mixin border-radiuses`.
 
-   **Combatproof mixins are a selection of time savers sass mixins I use almost everyday since 2014. Some of them come from around the Internet, some of them were coded by myself.**
+**Combatproof mixins are a selection of time saving sass mixins I use almost everyday since 2014. Some of them come from around the Internet, some of them were coded by myself.**
 
-   Most of the descriptions are written by [http://caniuse.com](Can I Use).
+Most of the descriptions are written by [http://caniuse.com](Can I Use).
 
 
 # Documentation (in progress)
