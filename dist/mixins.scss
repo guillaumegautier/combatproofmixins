@@ -1,4 +1,4 @@
-// combatproof mixins 1.5;
+// combatproof mixins 1.5.1;
 
 @mixin appearance($appearance: none){
 	-webkit-appearance: $appearance;
@@ -7,11 +7,6 @@
 		color: transparent;
 		text-shadow: 0 0 0 #000;
 	}
-}
-
-@mixin blur($value: 5px){
-	-webkit-filter: blur($value);
-	filter: blur($value);
 }
 
 @mixin border-radius($radius: 3px){
@@ -26,35 +21,6 @@
 	-webkit-box-sizing: $box-sizing;
 	-moz-box-sizing: $box-sizing;
 	box-sizing: $box-sizing;
-}
-
-@mixin border-top-radius($radius: 3px) {
-	-webkit-border-top-right-radius: $radius;
-	border-top-right-radius: $radius;
-	-webkit-border-top-left-radius: $radius;
-	border-top-left-radius: $radius;
-	background-clip: padding-box;
-}
-@mixin border-right-radius($radius: 3px) {
-	-webkit-border-bottom-right-radius: $radius;
-	border-bottom-right-radius: $radius;
-	-webkit-border-top-right-radius: $radius;
-	border-top-right-radius: $radius;
-	background-clip: padding-box;
-}
-@mixin border-bottom-radius($radius: 3px) {
-	-webkit-border-bottom-right-radius: $radius;
-	border-bottom-right-radius: $radius;
-	-webkit-border-bottom-left-radius: $radius;
-	border-bottom-left-radius: $radius;
-	background-clip: padding-box;
-}
-@mixin border-left-radius($radius: 3px) {
-	-webkit-border-bottom-left-radius: $radius;
-	border-bottom-left-radius: $radius;
-	-webkit-border-top-left-radius: $radius;
-	border-top-left-radius: $radius;
-	background-clip: padding-box;
 }
 
 @mixin box-shadow($values:0 1px 2px black){
