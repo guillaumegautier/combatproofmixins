@@ -7,7 +7,8 @@
 - Removed `@mixin border-top-radius` ;
 - Removed `@mixin border-right-radius` ;
 - Removed `@mixin border-bottom-radius` ;
-- Removed `@mixin border-left-radius` (replaced by `@mixin border-radiuses`.
+- Removed `@mixin border-left-radius` (replaced by `@mixin border-radiuses` ;
+- Modified `@mixin flex` (corrected prefixes).
 
 **Combatproof mixins are a selection of time saving sass mixins I use almost everyday since 2014. Some of them come from around the Internet, some of them were coded by myself.**
 
