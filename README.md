@@ -1,4 +1,4 @@
-# Combatproof Mixins 1.5.1
+# Combatproof Mixins
 
 **Combatproof mixins are a selection of time saving sass mixins and placeholders I use almost everyday since 2014. Some of them come from around the Internet, some of them were coded by myself.**
 
@@ -43,18 +43,6 @@ Method of making the border corners round. Sets the four corners at the same tim
 ```scss
 @mixin border-radius($radius: 3px){
 	border-radius: $radius;
-}
-```
-
-### border-radiuses
-
-Same as `@mixin border-radius` but you can pass 4 corners in the parameters to have four different corners.
-
-[Compatibility](http://caniuse.com/#feat=border-radius)
-
-```scss
-@mixin border-radiuses($radius1: 3px, $radius2: 3px, $radius3: 3px, $radius4: 3px){
-	border-radius: $radius1 $radius2 $radius3 $radius4;
 }
 ```
 
