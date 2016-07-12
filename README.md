@@ -4,16 +4,9 @@
 
 Some of the descriptions are coming from [http://caniuse.com](Can I Use), some other from [W3Schools](http://www.w3schools.com)
 
-### New in 1.5.2 :
-- added `%clearfix` ;
-- added `%flex` ;
-- added `%inline-block` ;
-- added `%stretch` ;
-- added `%text-truncate` ;
-- removed `@mixin icon` ;
-- removed commentary on `@mixin image-2x` ;
-- removed commentary on `@mixin opacity` ;
-- removed `!global` attributes on `@mixin rbpXX`.
+### New in 1.5.3 :
+- added `@function (rem)` ;
+- removed `@border-radiuses` ;
 
 # Documentation
 
@@ -65,7 +58,7 @@ Default value is `border-box`.
 
 ### clearfix
 
-Clearfix hack to clear floats. Base on a solution by [Thierry Koblentz](http://www.yuiblog.com/blog/2010/09/27/clearfix-reloaded-overflowhidden-demystified/), improved by [Nicolas Gallagher](http://nicolasgallagher.com/micro-clearfix-hack/).
+Clearfix hack to clear floats. Base on a solution by [Thierry Koblentz](http://www.yuiblog.com/blog/2010/09/27/clearfix-reloaded-overflowhidden-demystified/), improved by [Nicolas Gallagher](http://nicolasgallagher.com/micro-clearfix-hack/). You can use it as a placeholder or as a mixin.
 
 ```scss
 %clearfix{
@@ -294,6 +287,38 @@ $xl: 1140px;
 		@media screen and (min-width: $lg+1) { @content; }
 	}
 }
+```
+
+### function (rem)
+
+This function allows you to calculate size in `rem` value from a `px` value.
+
+**Important :** you have to set the `$em-base` variable (ex : `$em-base: 16;`);
+
+```scss
+@function rem($pxval) {
+	@if not unitless($pxval) {
+		$pxval: strip-units($pxval);
+	}
+	$base: $em-base;
+	@if not unitless($base) {
+		$base: strip-units($base);
+	}
+	@return ($pxval / $base) * 1rem;
+}
+```
+
+**Example :**
+
+```scss
+$em-base: 16;
+p {
+	font-size: rem(18);
+}
+```
+outputs :
+```css
+p {font-size: 1.125rem;}
 ```
 
 ### rotate

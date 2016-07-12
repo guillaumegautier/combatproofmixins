@@ -1,4 +1,4 @@
-// combatproof mixins 1.5.2;
+// combatproof mixins 1.5.3;
 
 %clearfix {
 	&:before,
@@ -34,10 +34,6 @@
 
 @mixin border-radius($radius: 3px){
 	border-radius: $radius;
-}
-
-@mixin border-radiuses($radius1: 3px, $radius2: 3px, $radius3: 3px, $radius4: 3px){
-	border-radius: $radius1 $radius2 $radius3 $radius4;
 }
 
 @mixin box-sizing($box-sizing: border-box){
@@ -117,7 +113,7 @@
 @mixin opacity($opacity) {
 	opacity: $opacity;
 	$opacity-ie: $opacity * 100;
-  filter: alpha(opacity=$opacity-ie);
+	filter: alpha(opacity=$opacity-ie);
 }
 
 @mixin order($value: 1){
@@ -125,10 +121,6 @@
 	order: $value;
 }
 
-$sm: 480px;
-$md: 720px;
-$lg: 960px;
-$xl: 1140px;
 @mixin rbp($media) {
 	@if $media == sm {
 		@media screen and (max-width: $sm) { @content; }
@@ -142,6 +134,19 @@ $xl: 1140px;
 	@else if $media == xl {
 		@media screen and (min-width: $lg+1) { @content; }
 	}
+}
+
+@function rem($pxval) {
+
+	@if not unitless($pxval) {
+		$pxval: strip-units($pxval);
+	}
+
+	$base: $em-base;
+	@if not unitless($base) {
+		$base: strip-units($base);
+	}
+	@return ($pxval / $base) * 1rem;
 }
 
 @mixin rotate ($deg) {
