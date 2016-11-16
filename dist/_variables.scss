@@ -1,0 +1,16 @@
+//mixins breakpoints
+
+$bpxs: 748px !global;
+$bpsm: 992px !global;
+$bpmd: 1200px !global;
+$bplg: 1500px !global;
+
+//responsive breakpoints
+
+$xxxs: 368px !global;
+$xxs: 400px !global;
+$xs: $bpxs !global;
+$sm: $bpsm !global;
+$md: $bpmd !global;
+$lg: $bplg !global;
+$em-base: 16;

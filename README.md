@@ -4,6 +4,13 @@
 
 Some of the descriptions are coming from [http://caniuse.com](Can I Use), some other from [W3Schools](http://www.w3schools.com)
 
+### New in 1.6.2 :
+- added `@rbp-to` ;
+- added `@text-adjust` ;
+- removed `@box-sizing`, `@column-count`, `@colum-gap`, `@column-rule`, `@flex`, `@inline-block`, `@order`, `@transforms`, `@transform-origin`, `@transitions`, `@user-select` ;
+- modified `@vertical-align-ghost` ; 
+- linted code.
+
 ### New in 1.5.3 :
 - added `@function (rem)` ;
 - removed `@border-radiuses` ;
@@ -17,9 +24,10 @@ The `appearance` property defines how elements (particularly form controls) appe
 [Compatibility](http://caniuse.com/#feat=css-appearance)
 
 ```scss
-@mixin appearance($appearance: none){
+@mixin appearance($appearance: none) {
 	-webkit-appearance: $appearance;
 	-moz-appearance: $appearance;
+
 	&:-moz-focusring {
 		color: transparent;
 		text-shadow: 0 0 0 #000;
@@ -34,12 +42,26 @@ Method of making the border corners round. Sets the four corners at the same tim
 [Compatibility](http://caniuse.com/#feat=border-radius)
 
 ```scss
-@mixin border-radius($radius: 3px){
+@mixin border-radius($radius: 3px) {
 	border-radius: $radius;
 }
 ```
 
-### box-sizing
+### box-shadow
+
+Simple box-shadow for rapid prototyping or consistency
+
+[Compatibility](http://caniuse.com/#search=box-shadow)
+
+```scss
+@mixin box-shadow($values:0 1px 2px black) {
+	-webkit-box-shadow: $values;
+	-moz-box-shadow: $values;
+	box-shadow: $values;
+}
+```
+
+<!-- ### box-sizing
 
 Method of specifying whether or not an element's borders and padding should be included in size units.
 
@@ -54,41 +76,45 @@ Default value is `border-box`.
 	-moz-box-sizing: $box-sizing;
 	box-sizing: $box-sizing;
 }
-```
+``` -->
 
 ### clearfix
 
 Clearfix hack to clear floats. Base on a solution by [Thierry Koblentz](http://www.yuiblog.com/blog/2010/09/27/clearfix-reloaded-overflowhidden-demystified/), improved by [Nicolas Gallagher](http://nicolasgallagher.com/micro-clearfix-hack/). You can use it as a placeholder or as a mixin.
 
 ```scss
-%clearfix{
-	&:before,
-	&:after {
-		content: " ";
+%clearfix {
+	&::before,
+	&::after {
+		content: '';
 		display: table;
 	}
-	&:after {
+
+	&::after {
 		clear: both;
 	}
-	* zoom: 1;
+
+	*zoom: 1;
 }
 ```
 
 ```scss
-@mixin clearfix{
-	&:before,
-	&:after {
-		content: " ";
+@mixin clearfix {
+	&::before,
+	&::after {
+		content: '';
 		display: table;
 	}
-	&:after {
+
+	&::after {
 		clear: both;
 	}
-	* zoom: 1;
+
+	*zoom: 1;
 }
 ```
 
-### column-count
+<!-- ### column-count
 
 Method of flowing information in multiple columns.
 The column-count property specifies the number of columns an element should be divided into.
@@ -103,9 +129,9 @@ Value is a number, ex `2`.
 	-moz-column-count: $count;
 	column-count: $count;
 }
-```
+``` -->
 
-### column-gap
+<!-- ### column-gap
 
 The column-gap property specifies the gap between the columns.
 
@@ -119,9 +145,9 @@ Value is a size, ex `40px`.
 	-moz-column-gap: $gap;
 	column-gap: $gap;
 }
-```
+``` -->
 
-### column-rule
+<!-- ### column-rule
 
 The column-rule-style property specifies the style of the rule between columns.
 
@@ -135,9 +161,9 @@ Value is a type, ex `solid`.
 	-moz-column-rule: $rule;
 	column-rule: $rule;
 }
-```
+``` -->
 
-### flex
+<!-- ### flex
 
 Method of positioning elements in horizontal or vertical stacks. This placeholder is used to add prefixes
 
@@ -155,10 +181,10 @@ Method of positioning elements in horizontal or vertical stacks. This placeholde
 	display: -webkit-flex;
 	display: flex;
 }
-```
+``` -->
 
 
-### flex-flow
+<!-- ### flex-flow
 
 The flex-flow property is a shorthand property for the flex-direction and the flex-wrap properties.
 
@@ -173,7 +199,7 @@ Default value is `row wrap`.
 	-ms-flex-flow: $value;
 	flex-flow: $value;
 }
-```
+``` -->
 
 ### halo
 
@@ -184,7 +210,7 @@ Default value is `0 0 3px white`.
 [Compatibility](http://caniuse.com/#feat=css-boxshadow)
 
 ```scss
-@mixin halo($h-shadow:0, $v-shadow:0, $blur:3px, $color:white){
+@mixin halo($h-shadow:0, $v-shadow:0, $blur:3px, $color: white) {
 	-webkit-box-shadow: $h-shadow $v-shadow $blur $color;
 	-moz-box-shadow: $h-shadow $v-shadow $blur $color;
 	box-shadow: $h-shadow $v-shadow $blur $color;
@@ -206,14 +232,13 @@ Values are `url` (quoted), `width` and `height`.
 	(-webkit-min-device-pixel-ratio: 1.3),
 	(min-device-pixel-ratio: 1.3),
 	(min-resolution: 1.3dppx) {
-		/* on retina, use image that's scaled by 2 */
 		background-image: url($image);
 		background-size: $width $height;
 	}
 }
 ```
 
-### inline-block
+<!-- ### inline-block
 
 Provides a cross-browser placeholder to implement `display: inline-block;` (introduced in CSS2 but badly implemented across browsers).
 
@@ -231,7 +256,7 @@ Provides a cross-browser placeholder to implement `display: inline-block;` (intr
 	*display:inline;
 	zoom:1;
 }
-```
+``` -->
 
 ### opacity
 
@@ -241,11 +266,11 @@ Provides a CSS fallback for IE when using `opacity`.
 @mixin opacity($opacity) {
 	opacity: $opacity;
 	$opacity-ie: $opacity * 100;
-  filter: alpha(opacity=$opacity-ie);
+	filter: alpha(opacity = $opacity-ie);
 }
 ```
 
-### order
+<!-- ### order
 
 Flex property to organize elements orders.
 
@@ -258,33 +283,59 @@ Default value is `1`.
 	-webkit-order: $value;
 	order: $value;
 }
-```
+``` -->
 
-### rbpXX
+### rbp(XX)
 
 RBP is for Responsive BreakPoints. It defines four breakpoints using media queries, matching with four variables so you can choose your breakpoints easily.
-
-Default value are `$sm: 480px`, `$md: 720px;` `$lg: 960px;` `$xl: 1140px`.
 
 [Compatibility](http://caniuse.com/#feat=css-mediaqueries)
 
 ```scss
-$sm: 480px;
-$md: 720px;
-$lg: 960px;
-$xl: 1140px;
 @mixin rbp($media) {
-	@if $media == sm {
-		@media screen and (max-width: $sm) { @content; }
+	@if $media == xs {
+		@media screen and (max-width: $bpxs) { @content; }
+	}
+	@else if $media == sm {
+		@media screen and (min-width: $bpxs+1) { @content; }
 	}
 	@else if $media == md {
-		@media screen and (min-width: $sm+1) { @content; }
+		@media screen and (min-width: $bpsm+1) { @content; }
 	}
 	@else if $media == lg {
-		@media screen and (min-width: $md+1) { @content; }
+		@media screen and (min-width: $bpmd+1) { @content; }
 	}
 	@else if $media == xl {
-		@media screen and (min-width: $lg+1) { @content; }
+		@media screen and (min-width: $bplg+1) { @content; }
+	}
+}
+```
+
+### rbp-to(XX)
+
+I created this one to fill missing blanks resulting of the use of mobile first. `rbp-to` is used to define a property from a breakpoint to another, or from `xs` to another breakpoint.
+
+[Compatibility](http://caniuse.com/#feat=css-mediaqueries)
+
+```scss
+@mixin rbp-to($media) {
+	@if $media == xxs {
+		@media screen and (max-width: $xxs) { @content; }
+	}
+	@if $media == xs {
+		@media screen and (max-width: $bpxs) { @content; }
+	}
+	@if $media == sm {
+		@media screen and (max-width: $bpsm) { @content; }
+	}
+	@else if $media == md {
+		@media screen and (max-width: $bpmd) { @content; }
+	}
+	@else if $media == lg {
+		@media screen and (max-width: $bplg) { @content; }
+	}
+	@else if $media == xl {
+		@media screen and (max-width: $bpxl) { @content; }
 	}
 }
 ```
@@ -297,9 +348,11 @@ This function allows you to calculate size in `rem` value from a `px` value.
 
 ```scss
 @function rem($pxval) {
+
 	@if not unitless($pxval) {
 		$pxval: strip-units($pxval);
 	}
+
 	$base: $em-base;
 	@if not unitless($base) {
 		$base: strip-units($base);
@@ -369,7 +422,7 @@ Value are number, ex `25, 25`.
 Strech is use on a child element having a parent on `position: relative;`. It extends it size to equal the size of the parent. By [David Manson](https://github.com/davidmanson/)
 
 ```scss
-%stretch{
+%stretch {
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -379,7 +432,7 @@ Strech is use on a child element having a parent on `position: relative;`. It ex
 ```
 
 ```scss
-@mixin stretch{
+@mixin stretch {
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -423,11 +476,12 @@ Then you can use the mixin, specifying width and height of the thumbnail in the 
 Values are sizes ex `150px, 150px`.
 
 ```scss
-@mixin thumbnail($width, $height){
-	.thumbnail{
-		width: $width;height: $height;
+@mixin thumbnail($width, $height) {
+	.thumbnail {
+		width: $width;
+		height: $height;
 		position: relative;
-		img{
+		img {
 			@extend stretch;
 			max-width: 100%; max-height: 100%;
 			margin: auto;
@@ -436,7 +490,7 @@ Values are sizes ex `150px, 150px`.
 }
 ```
 
-### transform
+<!-- ### transform
 
 Shortcut for `transform: $value`.
 
@@ -450,9 +504,9 @@ Compatibility depends of the applied [transformation](http://caniuse.com/#search
 	-webkit-transform: $transforms;
 	transform: $transforms;
 }
-```
+``` -->
 
-### transform-origin
+<!-- ### transform-origin
 
 Shortcut for `transform-origin: $value`. Sets a rotated element's base placement.
 
@@ -467,7 +521,7 @@ Shortcut for `transform-origin: $value`. Sets a rotated element's base placement
 	transform-origin: $origin;
 }
 
-```
+``` -->
 
 ### transition
 
@@ -487,7 +541,7 @@ Default values are `all, 0.2s, ease-out`.
 }
 ```
 
-### transitions
+<!-- ### transitions
 
 Transitions let you pass multiple parameters for multiple transition.
 
@@ -505,7 +559,7 @@ You have to pass the entire transition, there is no default value. It's a shortc
 	-o-transition: $var;
 	transition: $var;
 }
-```
+``` -->
 
 ### translate
 
@@ -521,7 +575,7 @@ Values are dimensions, ex `100px, 200px`.
 }
 ```
 
-### user-select
+<!-- ### user-select
 
 Method of preventing text/element selection using CSS. It's a shortcut to add prefixes.
 
@@ -530,13 +584,13 @@ Default value is `none`.
 [Compatibility]()
 
 ```scss
-@mixin user-select($user-select: none){
+@mixin user-select($user-select: none) {
 	-webkit-user-select: $user-select;
 	-moz-user-select: $user-select;
 	-ms-user-select: $user-select;
 	user-select: $user-select;
 }
-```
+``` -->
 
 ### vertical-align-ghost
 
@@ -546,14 +600,15 @@ I wrote this mixin from Michał Czernow's ghost element method.
 Compatibility : IE8+
 
 ```scss
-@mixin vertical-align-ghost{
-	&:before{
-		content:'';
+@mixin vertical-align-ghost {
+	&::before {
+		content: '';
 		display: inline-block;
 		height: 100%;
 		vertical-align: middle;
 	}
-	& > * {display: inline-block;vertical-align: middle;}
+
+	> * {display: inline-block; vertical-align: middle;}
 }
 ```
 
@@ -564,7 +619,7 @@ This is another way to fix the vertical center problem. It applies **to the chil
 [Compatibility](http://caniuse.com/#feat=transforms2d)
 
 ```scss
-@mixin vertical-align-transform{
+@mixin vertical-align-transform {
 	position: relative;
 	left: 50%;
 	top: 50%;
@@ -575,6 +630,3 @@ This is another way to fix the vertical center problem. It applies **to the chil
 	transform: translate(-50%,-50%);
 }
 ```
-
-
-
